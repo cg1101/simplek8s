@@ -33,3 +33,34 @@ The `nodePort` is the port outside world use to communicate with the pod.
 Run this command: `minikube start`.
 
 This will create a virtual machine running as a *node*. We will then use control command to start a *pod*.
+
+## Run our pod in kubernetes
+
+Run this command:
+
+```
+kubectl apply -f client-pod.yaml
+kubectl apply -f client-node-port.yaml
+```
+
+Then we check the status.
+
+```
+kubectl get pods
+```
+
+Next, we run:
+
+```
+kubectl get services
+```
+
+## Access our pod
+
+First, find the IP of our running kubernetes node.
+
+```
+kubectl get nodes -o wide
+```
+
+Assuming uor IP is `192.168.49.2`, then we can try input following address in the browser: `192.168.49.2:31515`.
